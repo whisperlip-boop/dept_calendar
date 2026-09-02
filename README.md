@@ -47,3 +47,13 @@ e.g. `eventTypes=LEAVE,TRAVEL` for an out-of-office page.
 
 `CLAUDE.md` records the scope decisions, the build/deploy procedure used during development,
 and the platform quirks that shaped the implementation.
+
+## Credits
+
+Event type icons are from [Flaticon](https://www.flaticon.com/), used under the Flaticon
+Free License, which requires attribution.
+
+## Licence
+
+Source code is released under the [MIT License](LICENSE). The icons are not covered by it;
+they remain subject to Flaticon's terms above.

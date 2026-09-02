@@ -40,6 +40,17 @@
    "small" dialog, with even margins on both sides.
    Both label metrics move together — padding-left on the row and margin-left on the label
    are AUI's negative-margin pairing, and changing one alone breaks the alignment. */
+/* 400px (aui-dialog2-small) plus 30px of breathing room on the right. The fields are
+   left-aligned so they stay put; the footer buttons are float:right, so they get the same
+   30px added to their padding to keep them where they were. */
+#dept-calendar-event-dialog {
+    width: 430px;
+}
+
+#dept-calendar-event-dialog .aui-dialog2-footer {
+    padding-right: 50px;
+}
+
 #dept-calendar-event-dialog form.aui .field-group {
     padding-left: 110px;
 }
