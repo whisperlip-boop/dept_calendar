@@ -1,0 +1,69 @@
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="dept_calendar"/>
+    
+    <!-- add our web resources -->
+    <web-resource key="dept_calendar-resources" name="dept_calendar Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.auiplugin:aui-date-picker</dependency>
+
+        <resource type="download" name="dept_calendar.css" location="/css/dept_calendar.css"/>
+        <resource type="download" name="dept_calendar.js" location="/js/dept_calendar.js"/>
+        <resource type="download" name="images/" location="/images"/>
+
+        <context>dept_calendar</context>
+    </web-resource>
+
+    <!-- ActiveObjects entities -->
+    <ao key="dept-calendar-ao">
+        <entity>com.vuno.confluence.deptcalendar.ao.Calendar</entity>
+        <entity>com.vuno.confluence.deptcalendar.ao.Event</entity>
+    </ao>
+
+    <!-- REST resources -->
+    <rest key="dept-calendar-rest" path="/dept-calendar" version="1.0">
+        <description>REST resources for dept_calendar</description>
+        <package>com.vuno.confluence.deptcalendar.rest</package>
+    </rest>
+
+    <!-- Space sidebar link -->
+    <web-item key="dept-calendar-sidebar-link" name="Dept Calendar Sidebar Link"
+              section="system.space.sidebar/main-links" weight="100">
+        <label key="dept.calendar.sidebar.label"/>
+        <link linkId="dept-calendar-sidebar-link-id">/plugins/dept-calendar/viewcalendar.action?key=$generalUtil.urlEncode($helper.spaceKey)</link>
+    </web-item>
+
+    <!-- Space calendar page -->
+    <xwork name="dept-calendar-actions" key="dept-calendar-actions">
+        <package name="dept-calendar" extends="default" namespace="/plugins/dept-calendar">
+            <default-interceptor-ref name="defaultStack"/>
+            <action name="viewcalendar" class="com.vuno.confluence.deptcalendar.action.CalendarSpaceAction">
+                <result name="success" type="redirect">${redirectUrl}</result>
+                <result name="error" type="redirect">/</result>
+            </action>
+        </package>
+    </xwork>
+
+    <!-- Calendar embed macro -->
+    <xhtml-macro key="dept-calendar-macro" name="dept-calendar"
+                 class="com.vuno.confluence.deptcalendar.macro.CalendarMacro" state="unrestricted">
+        <description key="dept.calendar.macro.description">Embeds a dept_calendar calendar</description>
+        <category name="confluence-content"/>
+        <parameters>
+            <parameter name="view" type="enum" default="month">
+                <enum-value name="month"/>
+                <enum-value name="week"/>
+            </parameter>
+            <parameter name="eventTypes" type="string"/>
+        </parameters>
+    </xhtml-macro>
+
+</atlassian-plugin>
