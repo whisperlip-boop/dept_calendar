@@ -3,6 +3,8 @@
         <description>${project.description}</description>
         <version>${project.version}</version>
         <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <!-- UPM serves these as image/png and ignores an SVG here, so they are rasterised
+             from images/calendar.svg — regenerate both if that icon ever changes. -->
         <param name="plugin-icon">images/pluginIcon.png</param>
         <param name="plugin-logo">images/pluginLogo.png</param>
     </plugin-info>

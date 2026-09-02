@@ -33,6 +33,18 @@ atlas-mvn clean package
 # -> target/dept_calendar-1.0.0.jar
 ```
 
+### Plugin icon
+
+`images/pluginIcon.png` and `images/pluginLogo.png` are rasterised from `images/calendar.svg`
+— UPM serves the "Manage apps" icon as `image/png` and returns an empty body if the plugin
+descriptor points at an SVG. Regenerate them if that icon changes:
+
+```bash
+javac -d /tmp tools/SvgToPng.java
+java -cp /tmp SvgToPng src/main/resources/images/calendar.svg src/main/resources/images/pluginIcon.png 72
+java -cp /tmp SvgToPng src/main/resources/images/calendar.svg src/main/resources/images/pluginLogo.png 144
+```
+
 ## Macro parameters
 
 | Parameter    | Values                          | Default | Description                              |

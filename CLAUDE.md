@@ -89,6 +89,11 @@ Confluence 의존성이 없는 순수 로직(`RecurrenceExpander` 등)은 `targe
   달력 막대는 `What (bskim, test)` 형태로 그리는데, 이 괄호 안 값이 곧 who다. 자동완성이 항상
   끝에 `", "`를 붙여서 `" bskim, "` 같은 값이 저장되므로 표시할 땐 trim + 빈 토큰 제거가 필수.
   (`formatWho`) 직접 이메일을 입력한 경우를 위해 `@` 앞부분만 남긴다.
+- **UPM의 plugin-icon/plugin-logo는 SVG를 못 받는다.** `<param name="plugin-icon">`에 svg를 주면
+  UPM이 `Content-Type: image/png`에 **본문 길이 0**으로 응답해서 기본 이미지가 뜬다(에러는 안 남).
+  그래서 `images/calendar.svg`를 PNG(72/144)로 래스터화해서 `pluginIcon.png`/`pluginLogo.png`로 넣는다.
+  변환기는 `tools/SvgToPng.java` — 이 환경엔 rsvg/inkscape/ImageMagick이 없어서 Java2D로 직접 그린다
+  (아이콘이 `M`/`C`/`Z`와 단색 fill만 쓰므로 가능).
 - **이벤트 타입 아이콘은 진한 남색 단색**이다. 색이 들어간 배경 위에 올리면 안 보인다.
   범례 칩을 흰 배경 + 색 스와치로 만든 이유.
 - `.field-group` 정렬은 범용 CSS 규칙이 없다. 라벨/입력 배치를 바꿀 땐 **이미 정렬되는 다른 필드와
