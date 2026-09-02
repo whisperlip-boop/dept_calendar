@@ -56,4 +56,4 @@ Free License, which requires attribution.
 ## Licence
 
 Source code is released under the [MIT License](LICENSE). The icons are not covered by it;
-they remain subject to Flaticon's terms above.
+they remain subject to Flaticon's terms above. See [NOTICE](NOTICE).

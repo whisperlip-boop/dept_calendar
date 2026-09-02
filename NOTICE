@@ -1,0 +1,12 @@
+Dept Calendar
+Copyright (c) 2026 BSKIM
+
+The MIT License in LICENSE covers the source code of this project.
+
+Third-party assets
+------------------
+
+The event type icons under src/main/resources/images/event-types/ are from
+Flaticon (https://www.flaticon.com/) and are used under the Flaticon Free
+License, which requires attribution. They are not covered by the MIT License
+above and remain subject to Flaticon's terms.
